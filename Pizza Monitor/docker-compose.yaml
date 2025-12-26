@@ -1,0 +1,104 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: pizza_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 30s
+      retries: 10
+
+  db:
+    image: postgres:15
+    container_name: pizza_db
+    environment:
+      POSTGRES_USER: pizza_user
+      POSTGRES_PASSWORD: pizza_pass
+      POSTGRES_DB: pizza_violations
+    ports:
+      - "5432:5432"
+    volumes:
+      - pizza_db_data:/var/lib/postgresql/data
+      - ./services/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pizza_user -d pizza_violations"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  detection:
+    build:
+      context: ./services/detection
+      dockerfile: Dockerfile
+    container_name: pizza_detection
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: pizza_user
+      DB_PASSWORD: pizza_pass
+      DB_NAME: pizza_violations
+      MODEL_PATH: /models/yolo12m-v2.pt  # FIXED: Use forward slashes
+    volumes:
+      - ./models/yolo12m-v2.pt:/models/yolo12m-v2.pt
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  streaming:
+    build:
+      context: ./services/streaming
+      dockerfile: Dockerfile
+    container_name: pizza_streaming
+    ports:
+      - "5000:5000"
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: pizza_user
+      DB_PASSWORD: pizza_pass
+      DB_NAME: pizza_violations
+    depends_on:
+      - detection
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./services/frontend
+      dockerfile: Dockerfile
+    container_name: pizza_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - streaming
+    restart: unless-stopped
+  frame_reader:
+    build:
+      context: ./services/frame_reader
+      dockerfile: Dockerfile
+    container_name: pizza_frame_reader
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      VIDEO_PATH: /videos
+    volumes:
+      - ./videos:/videos
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  pizza_db_data:
