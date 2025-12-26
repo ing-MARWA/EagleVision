@@ -36,7 +36,7 @@ A violation is detected when:
 - The hand is **NOT holding a scooper**
 - The hand is **overlapping with pizza**
 
-## ✨ Features
+## ✨Features
 
 - **Real-time Detection**: Process video frames with sub-second latency
 - **Scalable Architecture**: Horizontally scalable detection services
@@ -49,7 +49,7 @@ A violation is detected when:
 - **Health Checks**: Built-in service health monitoring
 - **Comprehensive Logging**: Detailed logs for debugging and monitoring
 
-## 🏗️ Architecture
+## 🏗️Architecture
 
 The system follows a **microservices architecture** with the following components:
 
@@ -80,7 +80,7 @@ The system follows a **microservices architecture** with the following component
 
 For detailed architecture information, see [ARCHITECTURE.md](./ARCHITECTURE.md)
 
-## 📦 Prerequisites
+## 📦Prerequisites
 
 - **Docker**: v20.10+
 - **Docker Compose**: v1.29+
@@ -90,7 +90,7 @@ For detailed architecture information, see [ARCHITECTURE.md](./ARCHITECTURE.md)
   - Storage: 30GB+ for models and database
 - **NVIDIA GPU** (optional): For accelerated inference with CUDA
 
-## 🚀 Installation & Setup
+## 🚀Installation & Setup
 
 ### 1. Clone Repository
 ```bash
@@ -180,7 +180,7 @@ docker-compose ps
 # pizza_frame_reader Up
 ```
 
-## ⚙️ Configuration
+## ⚙️Configuration
 
 ### Environment Variables
 
@@ -230,7 +230,7 @@ db:
     POSTGRES_DB: your_database
 ```
 
-## 🎬 Running the System
+## 🎬Running the System
 
 ### Start All Services
 ```bash
@@ -273,7 +273,7 @@ docker-compose down
 docker-compose down -v
 ```
 
-## 🔌 API Documentation
+## 🔌API Documentation
 
 ### Get All Violations by Video
 
@@ -370,7 +370,7 @@ GET /api/statistics
 GET /api/health
 ```
 
-## 🔍 Monitoring & Troubleshooting
+## 🔍Monitoring & Troubleshooting
 
 ### Check Service Health
 
@@ -443,7 +443,7 @@ docker stats
 docker stats --no-stream
 ```
 
-## 📁 Project Structure Details
+## 📁Project Structure Details
 
 ### Detection Service (`services/detection/`)
 - **app.py**: Main violation detection logic
@@ -476,7 +476,7 @@ docker stats --no-stream
 - **index.html**: Live monitoring dashboard
 - **nginx.conf**: Reverse proxy configuration
 
-## 🛠️ Technologies Used
+## 🛠️Technologies Used
 
 | Component | Technology | Version |
 |-----------|-----------|---------|
@@ -491,7 +491,7 @@ docker stats --no-stream
 | Video Processing | OpenCV | 4.8.0+ |
 | Language | Python | 3.10 |
 
-## 📊 Performance Metrics
+## 📊Performance Metrics
 
 ### Expected Performance
 
@@ -509,7 +509,7 @@ docker stats --no-stream
 - **Vertical Scaling**: Increase CPU/GPU and RAM for faster inference
 - **Database**: PostgreSQL can handle millions of violation records
 
-## 🔐 Security Notes
+## 🔐Security Notes
 
 - Change default RabbitMQ credentials in production
 - Use strong database passwords
@@ -517,7 +517,7 @@ docker stats --no-stream
 - Use HTTPS/TLS for frontend
 - Restrict database access to trusted networks
 
-## 📝 Logging
+## 📝Logging
 
 All services output structured logs:
 
@@ -527,18 +527,18 @@ All services output structured logs:
 2024-01-15 10:30:47,789 - frame_reader - INFO - 📤 Published frame 200 from video_1
 ```
 
-## 🤝 Contributing
+## 🤝Contributing
 
 1. Follow PEP 8 for Python code
 2. Test Docker images locally before pushing
 3. Update documentation for any configuration changes
 4. Add logging for new features
 
-## 📄 License
+## 📄License
 
 This project is provided as-is for educational and commercial use.
 
-## 🆘 Support
+## 🆘Support
 
 For issues and questions:
 1. Check [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
