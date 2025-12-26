@@ -89,8 +89,8 @@
 **Responsibilities**:
 - Monitor `./videos` directory for video files
 - Read videos frame-by-frame
-- Skip frames based on FPS configuration (default: 5 FPS)
-- Encode frames to JPEG (80% quality)
+- Skip frames based on FPS configuration 
+- Encode frames to JPEG 
 - Publish to RabbitMQ for processing
 - Save frame temporarily to disk for reference
 
@@ -137,7 +137,7 @@ frame_skip = int(fps / max_fps)  # Calculate frame skip rate
 **Responsibilities**:
 - Load YOLO12m model with custom modules
 - Consume frame messages from RabbitMQ
-- Run object detection (hand, pizza, scooper)
+- Run object detection (Person, hand, pizza, scooper)
 - Implement violation logic:
   - Hand in ROI
   - No scooper held
@@ -157,7 +157,7 @@ frame_skip = int(fps / max_fps)  # Calculate frame skip rate
 
 **A. YOLO Model Architecture**
 ```
-Input (3×640×640)
+Input (3×416×640)
     ↓
 [Backbone - Feature Extraction]
     ↓
@@ -165,7 +165,7 @@ Input (3×640×640)
     ↓
 [Head - Detection Output]
     ↓
-Objects: hand, pizza, scooper
+Objects: Person, hand, pizza, scooper
 ```
 
 **B. Violation Detection Logic**
@@ -482,7 +482,7 @@ for retry in range(5):
    └─→ Consume frame from RabbitMQ
    └─→ Load YOLO12m model
    └─→ Run inference (50-200ms)
-   └─→ Get detections: hand, pizza, scooper
+   └─→ Get detections: Person, hand, pizza, scooper
    └─→ Extract bounding boxes
 
 4. VIOLATION DETECTION
@@ -830,4 +830,4 @@ For questions or improvements, refer to the main README.md or contact the develo
 ---
 
 **Architecture Version**: 1.0
-**Last Updated**: January 2024
+**Last Updated**: December 2025
