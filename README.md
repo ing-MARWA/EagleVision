@@ -15,7 +15,7 @@ A microservices-based computer vision system that detects pizza handling violati
 - [Running the System](#running-the-system)
 - [API Documentation](#api-documentation)
 - [Monitoring & Troubleshooting](#monitoring--troubleshooting)
-- [Project Structure](#project-structure)
+- [Project Structure](#project-structure-details)
 - [Technologies Used](#technologies-used)
 
 ## 🎯Overview
