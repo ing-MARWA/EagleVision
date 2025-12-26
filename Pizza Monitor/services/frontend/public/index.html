@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Pizza Violation Detection</title>
+<style>
+  video, canvas { position:absolute; left:0; top:0; }
+  .overlay-box { border: 2px solid red; position:absolute; }
+</style>
+</head>
+<body>
+
+<h2>Pizza Scooper Violation Live Monitor</h2>
+<video id="videoStream" width="800" autoplay muted></video>
+<canvas id="canvasOverlay" width="800" height="600"></canvas>
+
+<script>
+const video = document.getElementById("videoStream");
+const canvas = document.getElementById("canvasOverlay");
+const ctx = canvas.getContext("2d");
+
+const videoName = "videos\\right_then_wrong.mp4"; // change per video
+
+// Poll backend every 500ms
+setInterval(async () => {
+  const res = await fetch(`/api/latest-detection/${videoName}`);
+  if (res.status !== 200) return;
+
+  const data = await res.json();
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  data.detections.forEach(det => {
+    const [x1,y1,x2,y2] = det.bbox;
+    ctx.strokeStyle = det.class === "hand" ? "red" : "green";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+    ctx.fillText(det.class, x1, y1 - 5);
+  });
+
+  document.getElementById("violationsCount").innerText =
+    "Violations: " + data.violation_count;
+}, 500);
+</script>
+
+<p id="violationsCount"></p>
+</body>
+</html>
