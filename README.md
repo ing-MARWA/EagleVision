@@ -24,7 +24,7 @@ PIZZA-MONITOR is a production-ready microservices architecture designed to:
 
 1. **Read video files** from a designated directory
 2. **Extract frames** and publish them to a message queue
-3. **Detect objects** (hands, pizza, scooper) using YOLO12m
+3. **Detect objects** (person, hands, pizza, scooper) using YOLO12m
 4. **Identify violations** when hands touch pizza without a scooper
 5. **Store violations** in a PostgreSQL database
 6. **Stream results** via REST API
