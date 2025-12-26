@@ -6,7 +6,7 @@ A microservices-based computer vision system that detects pizza handling violati
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
+- [Overview](##overview)
 - [Features](#features)
 - [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
