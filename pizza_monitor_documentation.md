@@ -126,18 +126,6 @@ Open browser: http://localhost:3000
    
    **Create this when**: Building client applications
 
-#### 5. **DEPLOYMENT_GUIDE.md** (Optional)
-   - Docker Compose setup
-   - Kubernetes deployment
-   - AWS/GCP deployment
-   - Environment variables
-   - Resource allocation
-   - Backup and recovery
-   
-   **Create this when**: Moving to production
-
----
-
 ## File Organization
 
 ```
@@ -145,8 +133,7 @@ PIZZA-MONITOR/
 ├── README.md                          ← START HERE
 ├── ARCHITECTURE.md                    ← System Design
 ├── SYSTEM_DIAGRAMS.md                 ← Visual Guides
-├── API_REFERENCE.md                   ← (optional)
-├── DEPLOYMENT_GUIDE.md                ← (optional)
+├── DOCUMENTATION.md                   ← Documentry
 │
 ├── services/
 │   ├── db/
@@ -174,9 +161,9 @@ PIZZA-MONITOR/
 │   └── yolo12m-v2.pt                  ← YOLO Model (500MB)
 │
 ├── videos/                            ← Input Videos
-│   ├── 1.mp4
-│   ├── 2.mp4
-│   └── 3.mp4
+│   ├── Sah w b3dha ghalt.mp4 
+│   ├── Sah w b3dha ghalt (2).mp4 
+│   └── Sah w b3dha ghalt (3).mp4 
 │
 └── docker-compose.yaml                ← Orchestration
 ```
@@ -249,7 +236,7 @@ curl http://localhost:5000/api/violations/video_1?limit=100
       },
       "detected_objects": ["hand", "pizza", "scooper"],
       "confidence": [0.95, 0.92, 0.87],
-      "created_at": "2024-01-15T10:30:45.123Z"
+      "created_at": "2025-12-26T10:30:45.123Z"
     }
   ]
 }
@@ -300,7 +287,7 @@ curl http://localhost:5000/api/latest-detection/video_1
 {
   "video_name": "video_1",
   "frame_id": 250,
-  "timestamp": "2024-01-15T10:30:45.123Z",
+  "timestamp": "2025-12-26T10:30:45.123Z",
   "detections": [
     {
       "class": "hand",
@@ -559,7 +546,7 @@ To use a different YOLO model:
    ```yaml
    # docker-compose.yaml
    environment:
-     MODEL_PATH: /models/yolo12l-custom.pt
+     MODEL_PATH: /models/yolo12m-v2.pt
    ```
 
 4. **Verify custom modules** (if using custom YOLO modules)
@@ -734,7 +721,7 @@ docker-compose up -d detection
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.0.0 | Jan 2024 | Initial release |
+| 1.0.0 | December 2025 | Initial release |
 
 ---
 
@@ -744,6 +731,6 @@ This project is provided as-is for educational and commercial use.
 
 ---
 
-**Last Updated**: January 2024
+**Last Updated**: December 2025
 **Maintained By**: Development Team
-**Contact**: support@example.com
+**Contact**: support@CV.com
