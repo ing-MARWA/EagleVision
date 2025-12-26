@@ -18,7 +18,7 @@ A microservices-based computer vision system that detects pizza handling violati
 - [Project Structure](#project-structure)
 - [Technologies Used](#technologies-used)
 
-##  Overview
+## 🎯Overview
 
 PIZZA-MONITOR is a production-ready microservices architecture designed to:
 
