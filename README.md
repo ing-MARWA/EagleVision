@@ -137,9 +137,8 @@ pizza-monitor/
 ```bash
 mkdir -p models
 # Download yolo12m-v2.pt to models/ directory
-# (~500MB file)
 cd models
-wget https://path-to-model/yolo12m-v2.pt  # or use your model source
+wget https://path-to-model/yolo12m-v2.pt  # use your model source
 cd ..
 ```
 
@@ -148,7 +147,7 @@ cd ..
 ```bash
 mkdir -p videos
 # Copy your video files to videos/ directory
-cp /path/to/your/videos/*.mp4 videos/
+cp videos*.mp4 videos/
 ```
 
 ### 5. Build and Start Services
@@ -295,7 +294,7 @@ GET /api/violations/<video_name>
       "violation_type": "hand_no_scooper",
       "bounding_boxes": [...],
       "detected_objects": ["hand", "pizza"],
-      "created_at": "2024-01-15T10:30:45.123Z"
+      "created_at": "2025-12-26T10:30:45.123Z"
     }
   ]
 }
@@ -329,7 +328,7 @@ GET /api/latest-detection/<video_name>
 {
   "video_name": "1",
   "frame_id": 250,
-  "timestamp": "2024-01-15T10:30:45Z",
+  "timestamp": "2025-12-26T10:30:45Z",
   "detections": [
     {
       "class": "hand",
@@ -448,7 +447,7 @@ docker stats --no-stream
 ### Detection Service (`services/detection/`)
 - **app.py**: Main violation detection logic
   - ROI checking
-  - Hand + Pizza + Scooper intersection logic
+  - Person + Hand + Pizza + Scooper intersection logic
   - Database persistence
 - **custom_modules.py**: YOLO12m neural network modules
   - A2C2f (Attention block)
@@ -497,7 +496,7 @@ docker stats --no-stream
 
 | Metric | Value |
 |--------|-------|
-| Video Processing Rate | 5-30 FPS (configurable) |
+| Video Processing Rate | 30 FPS (configurable) |
 | Detection Latency | 50-200ms per frame |
 | Memory Usage | ~3GB per detection service |
 | Database Write Throughput | 100+ violations/second |
@@ -522,9 +521,9 @@ docker stats --no-stream
 All services output structured logs:
 
 ```
-2024-01-15 10:30:45,123 - detection - INFO - ⚠️ Violation detected in video_1, frame 150
-2024-01-15 10:30:46,456 - streaming - INFO - 📊 Fetched 5 violations for video_1
-2024-01-15 10:30:47,789 - frame_reader - INFO - 📤 Published frame 200 from video_1
+2025-12-26 10:30:45,123 - detection - INFO - ⚠️ Violation detected in video_1, frame 150
+2025-12-26 10:30:46,456 - streaming - INFO - 📊 Fetched 5 violations for video_1
+2025-12-26 10:30:47,789 - frame_reader - INFO - 📤 Published frame 200 from video_1
 ```
 
 ## 🤝Contributing
@@ -548,5 +547,5 @@ For issues and questions:
 
 ---
 
-**Last Updated**: January 2024
+**Last Updated**: December 2025
 **Version**: 1.0.0
