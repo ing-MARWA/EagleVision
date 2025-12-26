@@ -19,8 +19,8 @@
 │  ┌──────────────────────────────────────────────────────────────────────┐  │
 │  │ FRAME READER SERVICE (Python + OpenCV)                              │  │
 │  │ • Read video files                                                   │  │
-│  │ • Extract frames (5 FPS configurable)                               │  │
-│  │ • Encode to JPEG (80% quality)                                      │  │
+│  │ • Extract frames                               │  │
+│  │ • Encode to JPEG                                       │  │
 │  │ • Publish to RabbitMQ                                               │  │
 │  │                                                                      │  │
 │  │  Input: Video File                                                  │  │
@@ -302,7 +302,7 @@ PostgreSQL Violation Record:
 │ detected_objects: ["hand", "pizza", "scooper"]         │
 │ confidence: [0.95, 0.92, 0.87]                         │
 │ frame_path: "/tmp/frames/video_1_150.jpg"              │
-│ created_at: 2024-01-15 10:30:45.123                    │
+│ created_at: 2025-12-26 10:30:45.123                    │
 └──────────────────────────────────────────────────────────┘
 
 REST API Response (GET /api/violations/video_1):
@@ -318,7 +318,7 @@ REST API Response (GET /api/violations/video_1):
 │       "violation_type": "hand_no_scooper",              │
 │       "bounding_boxes": {...},                          │
 │       "detected_objects": [...],                        │
-│       "created_at": "2024-01-15T10:30:45.123Z"         │
+│       "created_at": "2025-12-26T10:30:45.123Z"         │
 │     },                                                  │
 │     ... more violations ...                             │
 │   ]                                                     │
