@@ -78,7 +78,7 @@ The system follows a **microservices architecture** with the following component
 └─────────────────┘
 ```
 
-For detailed architecture information, see [ARCHITECTURE.md](./ARCHITECTURE.md)
+For detailed architecture information, see [ARCHITECTURE.md](./pizza_monitor_architecture.md)
 
 ## 📦Prerequisites
 
