@@ -94,7 +94,7 @@ For detailed architecture information, see [ARCHITECTURE.md](./pizza_monitor_arc
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/pizza-monitor.git
+git clone https://github.com/ing-MARWA/pizza-monitor.git
 cd pizza-monitor
 ```
 
